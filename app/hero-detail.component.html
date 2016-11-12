@@ -1,0 +1,32 @@
+<div class="uk-grid">
+    <div class="uk-width-7-10 uk-container-center">
+        <div class="uk-panel uk-panel-box uk-panel-box-primary">
+            <div *ngIf="!hero">
+                <h3 class="uk-panel-title">Đang tải ...</h3>
+            </div>
+            <div *ngIf="hero">
+                <h3 class="uk-panel-title">Hero detail</h3>
+                <strong>Hero name: </strong> {{hero.name}}<br>
+                <strong>Hero ID: </strong> {{hero.id}}
+                <div class="uk-margin-top">
+                    <div class="uk-button-group">
+                        <button class="uk-button uk-button-primary" (click)="toggleEdit()">Toggle editing</button>
+                        <button class="uk-button uk-button-danger" (click)="goBack()">Go back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-panel uk-panel-box" *ngIf="edit" data-uk-margin>
+            <h3 class="uk-panel-title"><i class="uk-icon-pencil-square-o"></i> Edit</h3>
+            <div class="uk-form">
+                <input type="text" placeholder="Hero name" [(ngModel)]="edit.name">
+            </div>
+            <div class="uk-button-group">
+                <button class="uk-button uk-button-success" (click)="toggleEdit(true)">Save</button>
+                <button class="uk-button uk-button-danger" (click)="toggleEdit()">Cancel</button>
+            </div>
+            <pre>{{ edit | json }}</pre>
+        </div>
+    </div>
+</div>

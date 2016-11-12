@@ -1,0 +1,10 @@
+<h2>Top 4 heroes!</h2>
+
+<div class="uk-grid uk-grid-small uk-grid-width-1-4" data-uk-grid-match="{target: '.uk-panel'}">
+    <div *ngFor="let hero of heroes">
+        <div class="uk-panel uk-panel-box uk-text-center">
+            <h2 class="uk-panel-title">{{hero.name}}</h2>
+            <a class="uk-button uk-button-mini uk-button-danger" [routerLink]="[ '/detail', hero.id ]">Detail</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<h1>Hero dashboard</h1>
+
+<div class="uk-grid">
+    <div class="uk-width-1-2">
+        <h3>List of our heroes!</h3>
+        <ul class="uk-nav uk-nav-side">
+            <li *ngFor="let hero of heroes" [class.uk-active]="hero==selected"><a (click)="onSelect(hero)"><span class="uk-badge">{{hero.id}}</span> {{ hero.name }}</a></li>
+        </ul>
+    </div>
+    <div class="uk-width-1-2">
+        <div *ngIf="!selected" class="uk-panel uk-panel-box uk-panel-box-secondary">
+            <h3 class="uk-panel-title">Warning!</h3>
+            Choose your right hero!
+        </div>
+        <div *ngIf="selected" class="uk-panel uk-panel-box uk-panel-box-primary">
+            <h3 class="uk-panel-title">You have choosed</h3>
+            <div class="uk-margin-bottom">
+                <strong class="uk-h2">{{selected.name}}</strong>
+            </div>
+            <div class="uk-button-group uk-width-1-1 uk-grid-width-1-2">
+                <button type="button" class="uk-button uk-button-large uk-button-primary" [routerLink]="[ '/detail', selected.id ]"><i class="uk-icon-search-plus"></i> Goto detail</button>
+                <button type="button" class="uk-button uk-button-large" (click)="selected = undefined"><i class="uk-icon-minus-circle"></i> Deselect</button>
+            </div>
+        </div>
+    </div>
+</div>
