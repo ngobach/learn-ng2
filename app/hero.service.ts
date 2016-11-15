@@ -1,40 +1,53 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-
+import { Http, Response } from '@angular/http';
 import { Hero } from './hero';
 
-const HEROES = [
-    new Hero(1, 'Batman'),
-    new Hero(2, 'Spider man'),
-    new Hero(3, 'Iron man'),
-    new Hero(4, 'No man'),
-    new Hero(5, 'Black widow'),
-    new Hero(6, 'Thor'),
-    new Hero(7, 'Loki'),
-];
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class HeroService {
+    private readonly heroPath = `app/heroes`;
 
     constructor(private http: Http) { }
     getHeroes(query?: string): Promise<Hero[]> {
-        if (!query) {
-            return Promise.resolve(HEROES);
-        }
-        return Promise.resolve(HEROES.filter(hero => hero.name.indexOf(query) >= 0));
+        return this.http
+            .get(this.heroPath)
+            .map((r: Response) => r.json().data as Hero[])
+            .map((heroes: Hero[]) => heroes.filter(hero => !query || (hero.name.toLowerCase().indexOf(query.toLowerCase()) >= 0)) as Hero[])
+            .toPromise()
+            .catch(this.handleError);
     }
 
     getHero(id: number): Promise<Hero> {
-        return Promise.resolve(HEROES.find(hero => hero.id === id));
+        return this.getHeroes().then(heroes => heroes.find(hero => hero.id === id));
     }
 
     update(hero: Hero): Promise<boolean> {
-        let item = HEROES.find(h => h.id === hero.id);
-        if (item) {
-            Object.assign(item, hero);
-            return Promise.resolve(true);
-        } else {
-            return Promise.resolve(false);
-        }
+        return this.http
+            .put(`${this.heroPath}/${hero.id}`, JSON.stringify(hero))
+            .toPromise().then(x => true)
+            .catch(this.handleError);
+    }
+
+    create(name: string): Promise<Hero>{
+        return this.http
+            .post(this.heroPath, JSON.stringify({name}))
+            .toPromise()
+            .then((r: Response) => r.json().data as Hero)
+            .catch(this.handleError);
+    }
+
+    remove(hero: Hero): Promise<Boolean> {
+        return this.http
+            .delete(`${this.heroPath}/${hero.id}`)
+            .toPromise()
+            .then((r: Response) => true)
+            .catch(this.handleError);
+    }
+
+    private handleError(e: Error) {
+        console.log('Failed', e);
+        return Promise.reject(e.message || e);
     }
 }
