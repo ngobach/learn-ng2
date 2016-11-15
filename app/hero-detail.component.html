@@ -1,32 +1,39 @@
-<div class="uk-grid">
-    <div class="uk-width-7-10 uk-container-center">
-        <div class="uk-panel uk-panel-box uk-panel-box-primary">
-            <div *ngIf="!hero">
-                <h3 class="uk-panel-title">Đang tải ...</h3>
-            </div>
-            <div *ngIf="hero">
-                <h3 class="uk-panel-title">Hero detail</h3>
+<div class="well">
+    <div>
+        <div *ngIf="!hero">
+            <h3>Đang tải ...</h3>
+        </div>
+        <div *ngIf="hero">
+            <div>
+                <h3>Hero detail</h3>
                 <strong>Hero name: </strong> {{hero.name}}<br>
                 <strong>Hero ID: </strong> {{hero.id}}
-                <div class="uk-margin-top">
-                    <div class="uk-button-group">
-                        <button class="uk-button uk-button-primary" (click)="toggleEdit()">Toggle editing</button>
-                        <button class="uk-button uk-button-danger" (click)="goBack()">Go back</button>
-                    </div>
+            </div>
+            <div class="btn-group btn-group-xs">
+                <button class="btn btn-primary" (click)="toggleEdit()">Toggle editing</button>
+                <button class="btn btn-danger" (click)="goBack()">Go back</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-info" *ngIf="edit">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Hero editor</h3>
+    </div>
+    
+    <div class="panel-body">
+        <div>
+            <div class="form-group">
+                <input type="text" placeholder="Hero name" class="form-control" [(ngModel)]="edit.name">
+            </div>
+            <div class="form-group">
+                <div class="btn-group btn-group-xs">
+                    <button class="btn btn-success" (click)="toggleEdit(true)">Save</button>
+                    <button class="btn btn--danger" (click)="toggleEdit()">Cancel</button>
                 </div>
             </div>
         </div>
-
-        <div class="uk-panel uk-panel-box" *ngIf="edit" data-uk-margin>
-            <h3 class="uk-panel-title"><i class="uk-icon-pencil-square-o"></i> Edit</h3>
-            <div class="uk-form">
-                <input type="text" placeholder="Hero name" [(ngModel)]="edit.name">
-            </div>
-            <div class="uk-button-group">
-                <button class="uk-button uk-button-success" (click)="toggleEdit(true)">Save</button>
-                <button class="uk-button uk-button-danger" (click)="toggleEdit()">Cancel</button>
-            </div>
-            <pre>{{ edit | json }}</pre>
-        </div>
+        <pre>{{ edit | json }}</pre>
     </div>
 </div>

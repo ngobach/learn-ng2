@@ -1,20 +1,30 @@
-<div class="uk-container uk-container-center">
+<div class="container">
 
-    <nav class="uk-navbar">
-        <ul class="uk-navbar-nav">
-            <li><a routerLink="/">Home</a></li>
-            <li><a routerLink="/dashboard">Dashboard</a></li>
-            <li><a routerLink="/list">Hero List</a></li>
-        </ul>
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:0">Angular2</a>
+        </div>
+        
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a routerLink="/">Home</a></li>
+                <li><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
+                <li><a routerLink="/list" routerLinkActive="active">Hero List</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <div class="uk-margin-top">
+    <div>
         <router-outlet></router-outlet>
     </div>
 
-    <div class="uk-block uk-block-default uk-block-primary uk-contrast uk-margin-large-top">
-        <div class="uk-container uk-text-center">
-            &copy; 2016 ThanBaiKS. UIKit 💖 Angular2
-        </div>
-    </div>
+    <footer class="well well-lg text-center">
+        <b>&copy; 2016 ThanBaiKS. Bootstrap 💖 Angular2</b>
+    </footer>
 </div>
