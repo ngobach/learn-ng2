@@ -2,7 +2,7 @@ import { Component, OnInit, trigger, animate, transition, state, style } from '@
 
 import { HeroService } from '../hero/hero.service';
 import { Hero } from '../hero/hero';
-import { Subject } from 'rxjs/subject';
+import { Subject } from 'rxjs/Subject';
 import '../rxjs';
 
 @Component({

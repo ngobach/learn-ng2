@@ -1,0 +1,39 @@
+<div class="well">
+    <div>
+        <div *ngIf="!hero">
+            <h3>Đang tải ...</h3>
+        </div>
+        <div *ngIf="hero">
+            <div>
+                <h3>Hero detail</h3>
+                <strong>Hero name: </strong> {{hero.name}}<br>
+                <strong>Hero ID: </strong> {{hero.id}}
+            </div>
+            <div class="btn-group btn-group-xs">
+                <button class="btn btn-primary" (click)="toggleEdit()">Toggle editing</button>
+                <button class="btn btn-danger" (click)="goBack()">Go back</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-info panel-editor" *ngIf="edit" [@fade]="'in'">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Hero editor</h3>
+    </div>
+    
+    <div class="panel-body">
+        <div>
+            <div class="form-group">
+                <input type="text" placeholder="Hero name" class="form-control" [(ngModel)]="edit.name">
+            </div>
+            <div class="form-group">
+                <div class="btn-group btn-group-xs">
+                    <button class="btn btn-success" (click)="toggleEdit(true)" [disabled]="!edit.name">Save</button>
+                    <button class="btn btn--danger" (click)="toggleEdit()">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <pre>{{ edit | json }}</pre>
+    </div>
+</div>

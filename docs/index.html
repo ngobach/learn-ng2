@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="/">
+    <title>Road to Angular 2 Heaven</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link rel="stylesheet" href="styles.css">-->
+    <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Polyfill(s) for older browsers -->
+    <script src="https://unpkg.com/core-js/client/shim.min.js"></script>
+
+    <script src="https://unpkg.com/zone.js/dist/zone.js"></script>
+    <script src="https://unpkg.com/reflect-metadata/Reflect.js"></script>
+    <script src="https://unpkg.com/systemjs/dist/system.src.js"></script>
+
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err); });
+    </script>
+  </head>
+
+  <body>
+    <my-app>Loading...</my-app>
+  </body>
+</html>
