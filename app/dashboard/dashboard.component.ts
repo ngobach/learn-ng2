@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { HeroService } from './hero.service';
-import { Hero } from './hero';
+import { HeroService } from '../hero/hero.service';
+import { Hero } from '../hero/hero';
 import { Subject } from 'rxjs/subject';
-import './rxjs';
+import '../rxjs';
+import { Observable } from 'rxjs/observable';
 
 @Component({
     moduleId: module.id,
@@ -19,15 +20,15 @@ export class DashboardComponent implements OnInit {
     constructor(private heroService: HeroService) {
         this.name = '';
         this.searchTerm = new Subject<string>();
-        this.searchTerm
+        let tmp = this.searchTerm
             .debounceTime(300)
             .distinctUntilChanged()
+            .startWith('')
             .switchMap(x => this.heroService.getHeroes(x))
             .subscribe(x => this.heroes = x);
     }
 
     ngOnInit() {
-        this.searchTerm.next();
     }
 
     onSelect(hero: Hero) {

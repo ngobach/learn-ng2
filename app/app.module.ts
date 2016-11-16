@@ -1,31 +1,33 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
 
-import { AppRouter, routedComponents } from './app-router.module';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
 import { AppComponent }  from './app.component';
-import { HeroService } from './hero.service';
+import { AppRouter } from './app-router.module';
+
+import { DashboardModule } from './dashboard/dashboard.module';
+import { HeroListModule } from './hero-list/hero-list.module';
+import { HeroDetailModule } from './hero-detail/hero-detail.module';
+import { CoreModule } from './core/core.module';
+
+
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './core/in-memory-data.service';
+
+const myModules = [
+  DashboardModule,
+  HeroListModule,
+  HeroDetailModule,
+  CoreModule
+];
 
 @NgModule({
   imports: [
     BrowserModule,
     AppRouter,
-    HttpModule,
-    FormsModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService, {delay: 0})
+    ...myModules,
+    InMemoryWebApiModule.forRoot(InMemoryDataService, {delay: 0}) // DEBUG
   ],
-  declarations: [
-    AppComponent,
-    ...routedComponents
-  ],
-  bootstrap: [
-    AppComponent
-  ],
-  providers: [
-    HeroService
-  ]
+  declarations: [ AppComponent ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
