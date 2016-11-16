@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, trigger, animate, transition, state, style } from '@angular/core';
 
 import { HeroService } from '../hero/hero.service';
 import { Hero } from '../hero/hero';
 import { Subject } from 'rxjs/subject';
 import '../rxjs';
-import { Observable } from 'rxjs/observable';
 
 @Component({
     moduleId: module.id,
     selector: 'app-dashboard',
-    templateUrl: 'dashboard.component.html'
+    templateUrl: 'dashboard.component.html',
+    animations: [
+        trigger('rowAnim', [
+            transition(':enter', [
+                style({opacity: 0}),
+                animate('250ms ease-in')
+            ]),
+            transition(':leave', [
+                animate('250ms ease-out', style({opacity: 0}))
+            ])
+        ])
+    ]
 })
 export class DashboardComponent implements OnInit {
     heroes: Hero[];
@@ -20,7 +30,7 @@ export class DashboardComponent implements OnInit {
     constructor(private heroService: HeroService) {
         this.name = '';
         this.searchTerm = new Subject<string>();
-        let tmp = this.searchTerm
+        this.searchTerm
             .debounceTime(300)
             .distinctUntilChanged()
             .startWith('')

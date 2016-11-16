@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="list-group">
-                <a href="javascript:0" class="list-group-item" *ngFor="let hero of heroes" [class.active]="hero==selected" (click)="onSelect(hero)">
+                <a href="javascript:0" class="list-group-item" *ngFor="let hero of heroes" [class.active]="hero==selected" (click)="onSelect(hero)" [@rowAnim]="'in'">
                     <span class="badge">{{hero.id}}</span> {{ hero.name }}
                 </a>
             </div>

@@ -17,7 +17,7 @@
     </div>
 </div>
 
-<div class="panel panel-info" *ngIf="edit">
+<div class="panel panel-info panel-editor" *ngIf="edit" [@fade]="'in'">
     <div class="panel-heading">
         <h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> Hero editor</h3>
     </div>
@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <div class="btn-group btn-group-xs">
-                    <button class="btn btn-success" (click)="toggleEdit(true)">Save</button>
+                    <button class="btn btn-success" (click)="toggleEdit(true)" [disabled]="!edit.name">Save</button>
                     <button class="btn btn--danger" (click)="toggleEdit()">Cancel</button>
                 </div>
             </div>
