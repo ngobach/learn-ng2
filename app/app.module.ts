@@ -8,7 +8,9 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { HeroListModule } from './hero-list/hero-list.module';
 import { HeroDetailModule } from './hero-detail/hero-detail.module';
 import { CoreModule } from './core/core.module';
-
+import { AdminModule } from './admin/admin.module';
+import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './core/in-memory-data.service';
@@ -17,14 +19,17 @@ const myModules = [
   DashboardModule,
   HeroListModule,
   HeroDetailModule,
-  CoreModule
+  AdminModule,
+  AuthModule
 ];
 
 @NgModule({
   imports: [
     BrowserModule,
-    AppRouter,
     ...myModules,
+    AppRouter,
+    CoreModule,
+    SharedModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService, {delay: 0}) // DEBUG
   ],
   declarations: [ AppComponent ],

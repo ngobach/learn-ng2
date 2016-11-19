@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
 const DIRECTIVES: Array<any> = [
+
 ];
 
 @NgModule({

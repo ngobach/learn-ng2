@@ -4,6 +4,7 @@ import { Hero } from './hero';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class HeroService {
@@ -15,6 +16,7 @@ export class HeroService {
             .get(this.heroPath)
             .map((r: Response) => r.json().data as Hero[])
             .map((heroes: Hero[]) => heroes.filter(hero => !query || (hero.name.toLowerCase().indexOf(query.toLowerCase()) >= 0)) as Hero[])
+            .delay(500)
             .toPromise()
             .catch(this.handleError);
     }

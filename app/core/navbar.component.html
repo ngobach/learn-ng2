@@ -15,5 +15,10 @@
             <li><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
             <li><a routerLink="/list" routerLinkActive="active">Hero List</a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="auth.loggedIn"><a routerLink="/admin" routerLinkActive="active">Admin area</a></li>
+            <li *ngIf="auth.loggedIn"><a href="javascript:0" (click)="doLogout()" routerLinkActive="active">Logout</a></li>
+            <li *ngIf="!auth.loggedIn"><a href="javascript:0" (click)="doLogin()" routerLinkActive="active">Login</a></li>
+        </ul>
     </div>
 </nav>

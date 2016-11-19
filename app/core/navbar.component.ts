@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Auth } from '../auth/auth.service';
+
+import { Router } from '@angular/router';
 
 @Component({
     moduleId: module.id,
@@ -8,7 +11,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class NavbarComponent implements OnInit {
     @Input() title: string;
 
-    constructor() { }
+    constructor(private auth: Auth, private router: Router) {}
 
-    ngOnInit() { }
+    ngOnInit() {}
+
+    doLogin() {
+        this.router.navigate(['/login']);
+    }
+
+    doLogout() {
+        this.auth.logout();
+    }
 }

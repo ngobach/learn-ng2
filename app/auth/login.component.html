@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+        <div class="panel panel-primary">
+            <div class="panel-body text-center">
+                <h4>Đăng nhập hệ thống</h4>
+                
+                <div *ngIf="message" class="alert alert-success">
+                    {{message}}
+                </div>
+                <button *ngIf="!auth.loggedIn" (click)="login()" class="btn-block btn-primary btn">Đăng nhập</button>
+                <button *ngIf="auth.loggedIn" (click)="logout()" class="btn-block btn-danger btn">Đăng xuất</button>
+            </div>
+        </div>
+    </div>
+</div>
